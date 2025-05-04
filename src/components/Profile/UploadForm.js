@@ -27,7 +27,7 @@ const UploadForm = ({ onUploadSuccess }) => {
 
     try {
       setUploading(true);
-      const res = await axios.post('https://reactwebsite-2.onrender.comד/upload', formData, {
+      const res = await axios.post('https://reactwebsite-2.onrender.com/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       console.log('Upload response:', res.data);

@@ -77,7 +77,7 @@ const MapContainer = () => {
   useEffect(() => {
     const fetchAllUsers = async () => {
       try {
-        const res = await axios.get(`http:/https://reactwebsite-ezug.onrender.com/locations`);
+        const res = await axios.get(`https://reactwebsite-2.onrender.com/locations`);
         setAllUsers(res.data);
         
       } catch (err) {
@@ -116,7 +116,7 @@ const MapContainer = () => {
           <Marker
             key={user.id}
             position={[user.lat, user.lng]}
-            icon={createProfileIcon(user.profile_image ? `https://reactwebsite-2.onrender.comp/uploads/${user.profile_image}` : null)}
+            icon={createProfileIcon(user.profile_image ? `https://reactwebsite-2.onrender.com/uploads/${user.profile_image}` : null)}
           >
             <Popup>
               {user.username}
