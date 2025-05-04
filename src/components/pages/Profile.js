@@ -43,7 +43,7 @@ function Profile() {
       {profile?.profile_pic && (
         <div className="profile-picture">
           <img
-            src={`http://https://reactwebsite-ezug.onrender.com/uploads/${profile.profile_pic}`}
+            src={`http://192.168.1.116:5000/uploads/${profile.profile_pic}`}
             alt="Profile"
             style={{ width: '100px', height: '100px', borderRadius: '50%' }}
           />

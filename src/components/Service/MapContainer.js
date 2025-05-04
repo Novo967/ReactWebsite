@@ -43,10 +43,10 @@ const MapContainer = () => {
       const email = localStorage.getItem('userEmail');
       if (email) {
         try {
-          const response = await axios.get(`http://192.168.1.116:5000/profile?email=${email}`);
+          const response = await axios.get(`http://https://reactwebsite-ezug.onrender.com/profile?email=${email}`);
           setUserProfilePic(response.data.profile_pic);
 
-          await axios.post(`http://192.168.1.116:5000/update_location`, {
+          await axios.post(`http://https://reactwebsite-ezug.onrender.com/update_location`, {
             email,
             latitude,
             longitude
@@ -77,7 +77,7 @@ const MapContainer = () => {
   useEffect(() => {
     const fetchAllUsers = async () => {
       try {
-        const res = await axios.get(`http:/192.168.1.116:5000/locations`);
+        const res = await axios.get(`http:/https://reactwebsite-ezug.onrender.com/locations`);
         setAllUsers(res.data);
         
       } catch (err) {
@@ -105,7 +105,7 @@ const MapContainer = () => {
         <Marker
             position={[userLocation.latitude, userLocation.longitude]}
             icon={createProfileIcon(
-                userProfilePic ? `http://192.168.1.116:5000/uploads/${userProfilePic}` : null
+                userProfilePic ? `http://https://reactwebsite-ezug.onrender.com/uploads/${userProfilePic}` : null
             )}
             >
             <Popup>
@@ -116,7 +116,7 @@ const MapContainer = () => {
           <Marker
             key={user.id}
             position={[user.lat, user.lng]}
-            icon={createProfileIcon(user.profile_image ? `http://192.168.1.116:5000p/uploads/${user.profile_image}` : null)}
+            icon={createProfileIcon(user.profile_image ? `http://https://reactwebsite-ezug.onrender.comp/uploads/${user.profile_image}` : null)}
           >
             <Popup>
               {user.username}
