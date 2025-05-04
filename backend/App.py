@@ -10,7 +10,7 @@ from werkzeug.utils import secure_filename
 
 # Initialize app and config
 app = Flask(__name__)
-CORS(app, origins=["https:// https://react-website-ch-1-wki1zlyw6-novs-projects-c22b7ac3.vercel.app","http://localhost:3000", "https://4137-2a0d-6fc7-213-b38c-4085-28d1-ea2-2f26.ngrok-free.app", "http://192.168.15.51:3000"])
+CORS(app, origins=["https://react-website-ch-1-pur39eht3-novs-projects-c22b7ac3.vercel.app","http://localhost:3000", "https://4137-2a0d-6fc7-213-b38c-4085-28d1-ea2-2f26.ngrok-free.app", "http://192.168.15.51:3000"])
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), 'uploads')
@@ -46,6 +46,12 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+
+@app.route('/')
+def index():
+    return 'Flask server is running.'
 
 
 # Sign-in route
