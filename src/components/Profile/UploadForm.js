@@ -27,7 +27,7 @@ const UploadForm = ({ onUploadSuccess }) => {
 
     try {
       setUploading(true);
-      const res = await axios.post('http://192.168.15.51:5000/upload', formData, {
+      const res = await axios.post('http://192.168.1.116:5000/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       console.log('Upload response:', res.data);

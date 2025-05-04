@@ -9,7 +9,7 @@ const Gallery = ({ photos }) => {
         {photos && photos.length > 0 ? (
           photos.map((photo, index) => (
             <div className="photo-item" key={index}>
-              <img src={`http://192.168.15.51:5000/uploads/${photo.filename}`} alt="Uploaded" />
+              <img src={`http://192.168.1.116:5000/uploads/${photo.filename}`} alt="Uploaded" />
               
             </div>
           ))
