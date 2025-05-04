@@ -54,7 +54,7 @@ const SignUp = () => {
     }
   
     try {
-      const response = await fetch('https://reactwebsite-2.onrender.com/api/signup', {
+      const response = await fetch('https://reactwebsite-2.onrender.com/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

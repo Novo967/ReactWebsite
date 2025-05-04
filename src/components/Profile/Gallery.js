@@ -9,7 +9,7 @@ const Gallery = ({ photos }) => {
         {photos && photos.length > 0 ? (
           photos.map((photo, index) => (
             <div className="photo-item" key={index}>
-              <img src={`http://https://reactwebsite-ezug.onrender.com/uploads/${photo.filename}`} alt="Uploaded" />
+              <img src={`https://reactwebsite-2.onrender.com/uploads/${photo.filename}`} alt="Uploaded" />
               
             </div>
           ))

@@ -21,7 +21,7 @@ function Profile() {
           console.error("Email not found in localStorage");
           return;
         }
-        const response = await axios.get(`http://https://reactwebsite-ezug.onrender.com/profile?email=${email}`);
+        const response = await axios.get(`https://reactwebsite-2.onrender.com/profile?email=${email}`);
         
         setProfile(response.data);
       } catch (error) {
