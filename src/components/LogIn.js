@@ -47,7 +47,7 @@ const LogingIn = () => {
     }
   
     try {
-      const response = await fetch('http://192.168.1.116:5000/signin', {
+      const response = await fetch('http://https://reactwebsite-ezug.onrender.com/signin', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
