@@ -3,10 +3,10 @@ import axios from 'axios';
 import ProfileHeader from '../Profile/ProfileHeader';
 import FollowersInfo from '../Profile/FollowersInfo';
 import UploadPhoto from '../Profile/UploadPhoto';
-import './Profile.css';
 import Gallery from '../Profile/Gallery';
 import UploadForm from '../Profile/UploadForm';
 import UploadProfilePic from '../Profile/UploadProfilePic';
+import styled from 'styled-components';
 
 function Profile() {
   const [profile, setProfile] = useState(null);
@@ -14,63 +14,57 @@ function Profile() {
   useEffect(() => {
     const fetchProfile = async () => {
       const email = localStorage.getItem('userEmail');
+      if (!email) {
+        console.error("Email not found in localStorage");
+        return;
+      }
       try {
-        
-       
-        if (!email) {
-          console.error("Email not found in localStorage");
-          return;
-        }
         const response = await axios.get(`https://reactwebsite-2.onrender.com/profile?email=${email}`);
-        
         setProfile(response.data);
       } catch (error) {
         console.error("Error loading profile:", error);
       }
-
     };
-
-    
 
     fetchProfile();
   }, []);
 
-  if (!profile) return <div className="loading">Profile loading...</div>;
+  if (!profile) return <Loading>Profile loading...</Loading>;
 
   return (
-    <div className="profile-container">
-      
+    <Container>
       {profile?.profile_pic && (
-        <div className="profile-picture">
+        <ProfilePicture>
           <img
-            src={`http://192.168.1.116:5000/uploads/${profile.profile_pic}`}
+            src={`https://reactwebsite-2.onrender.com/uploads/${profile.profile_pic}`}
             alt="Profile"
-            style={{ width: '100px', height: '100px', borderRadius: '50%' }}
           />
-        </div>
+        </ProfilePicture>
       )}
+
       <ProfileHeader name={profile.name} />
-      <UploadProfilePic onUploadSuccess={(newFilename) => {
-        setProfile((prev) => ({
-          ...prev,
-          profile_pic: newFilename,
-        }));
-      }} />
-      
-     
+
+      <UploadProfilePic
+        onUploadSuccess={(newFilename) =>
+          setProfile((prev) => ({
+            ...prev,
+            profile_pic: newFilename,
+          }))
+        }
+      />
+
       <FollowersInfo followers={profile.followers} following={profile.following} />
       <UploadPhoto />
 
-      {/* ✅ Upload form goes here */}
       <UploadForm
-          email={profile.email}
-          onUploadSuccess={(newPhoto) =>
-            setProfile((prev) => ({
-              ...prev,
-              photos: [...(prev.photos || []), newPhoto],
-            }))
-          }
-        />
+        email={profile.email}
+        onUploadSuccess={(newPhoto) =>
+          setProfile((prev) => ({
+            ...prev,
+            photos: [...(prev.photos || []), newPhoto],
+          }))
+        }
+      />
 
       <Gallery
         photos={profile?.photos || []}
@@ -82,8 +76,35 @@ function Profile() {
           }))
         }
       />
-    </div>
+    </Container>
   );
 }
 
 export default Profile;
+
+// styled-components
+const Container = styled.div`
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: #fff;
+  text-align: center;
+`;
+
+const Loading = styled.div`
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 2rem;
+`;
+
+const ProfilePicture = styled.div`
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #3498db;
+    object-fit: cover;
+  }
+`;
